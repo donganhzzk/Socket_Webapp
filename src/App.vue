@@ -53,4 +53,7 @@ export default defineComponent({
 
 //RTL version styles
 //@import "assets/css/style.rtl.css";
+
+// Personal custom
+@import "assets/scss/personal-custom";
 </style>

@@ -76,7 +76,7 @@
           <span class="indicator-label"> Đăng nhập </span>
 
           <span class="indicator-progress">
-            Please wait...
+            Vui lòng đợi...
             <span
               class="spinner-border spinner-border-sm align-middle ms-2"
             ></span>
@@ -116,7 +116,7 @@ export default defineComponent({
     //Create form validation object
     const login = Yup.object().shape({
       email: Yup.string().email().required().label("Email"),
-      password: Yup.string().min(4).required().label("Password"),
+      password: Yup.string().min(8).required().label("Password"),
     });
 
     //Form submit function

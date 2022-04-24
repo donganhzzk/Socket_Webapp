@@ -276,6 +276,26 @@
           </a>
         </div>
         <!--end::Menu item-->
+
+        <!--begin::Menu item-->
+        <div class="menu-item px-3">
+          <a
+            @click="setLang('vi')"
+            href="#"
+            class="menu-link d-flex px-5"
+            :class="{ active: currentLanguage('vi') }"
+          >
+            <span class="symbol symbol-20px me-4">
+              <img
+                class="rounded-1"
+                src="media/flags/vietnam.svg"
+                alt="metronic"
+              />
+            </span>
+            Việt Nam
+          </a>
+        </div>
+        <!--end::Menu item-->
       </div>
       <!--end::Menu sub-->
     </div>
@@ -315,7 +335,7 @@ export default defineComponent({
 
     i18n.locale.value = localStorage.getItem("lang")
       ? (localStorage.getItem("lang") as string)
-      : "en";
+      : "vi";
 
     const countries = {
       en: {
@@ -337,6 +357,10 @@ export default defineComponent({
       fr: {
         flag: "media/flags/france.svg",
         name: "French",
+      },
+      vi: {
+        flag: "media/flags/vietnam.svg",
+        name: "Việt Nam",
       },
     };
 

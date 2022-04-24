@@ -239,6 +239,12 @@ const routes: Array<RouteRecordRaw> = [
         name: "widgets-feeds",
         component: () => import("@/views/crafted/widgets/Feeds.vue"),
       },
+
+      {
+        path: "/users",
+        name: "users",
+        component: () => import("@/views/User.vue"),
+      },
     ],
   },
   {
@@ -297,7 +303,7 @@ router.beforeEach(() => {
   // reset config to initial state
   store.commit(Mutations.RESET_LAYOUT_CONFIG);
 
-  store.dispatch(Actions.VERIFY_AUTH, { api_token: JwtService.getToken() });
+  store.dispatch(Actions.VERIFY_AUTH, { access_token: JwtService.getToken() });
 
   // Scroll page to top on every route change
   setTimeout(() => {

@@ -303,6 +303,18 @@ const DocMenuConfig = [
       },
     ],
   },
+  {
+    heading: "Quản lý người dùng",
+    route: "/users",
+    pages: [
+      {
+        heading: "userManager",
+        route: "/users",
+        svgIcon: "media/icons/duotune/communication/com006.svg",
+        fontIcon: "bi-calendar3-event",
+      },
+    ],
+  },
 ];
 
 export default DocMenuConfig;

@@ -8,7 +8,7 @@ export interface User {
   surname: string;
   email: string;
   password: string;
-  api_token: string;
+  access_token: string;
 }
 
 export interface UserAuthInfo {
@@ -57,7 +57,7 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
     this.isAuthenticated = true;
     this.user = user;
     this.errors = {};
-    JwtService.saveToken(user.api_token);
+    JwtService.saveToken(user.access_token);
   }
 
   @Mutation

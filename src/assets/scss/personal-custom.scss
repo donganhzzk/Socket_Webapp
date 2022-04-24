@@ -1,0 +1,21 @@
+@mixin psn-custom {
+  @for $i from 1 through 100 {
+    .psn-mh-#{$i} {
+      max-height: #{$i}vh;
+    }
+
+    .psn-mw-#{$i} {
+      max-width: #{$i}vw;
+    }
+
+    .psn-vh-#{$i} {
+      height: #{$i}vh;
+    }
+
+    .psn-vw-#{$i} {
+      width: #{$i}vw;
+    }
+  }
+}
+
+@include psn-custom;
