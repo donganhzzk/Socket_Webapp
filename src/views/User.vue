@@ -4,7 +4,10 @@
     <div class="card-header border-0 pt-5">
       <h3 class="card-title align-items-start flex-column">
         <!--begin::Search-->
-        <Search @resetSearch="resetSearch" @search="handleSearch"></Search>
+        <Search
+          placeholder="Nhập tên, email hoặc số điện thoại"
+          v-model:search="qr"
+        ></Search>
         <!--end::Search-->
       </h3>
       <div class="card-toolbar">
@@ -110,8 +113,10 @@
                     placement="top"
                   >
                     <a
-                      href="#"
                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#change-password-user"
+                      @click="showForm(item)"
                     >
                       <i class="fas fa-lock"></i>
                     </a>
@@ -127,7 +132,7 @@
                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                       data-bs-toggle="modal"
                       data-bs-target="#update-user"
-                      @click="showFormUpdate(item)"
+                      @click="showForm(item)"
                     >
                       <i class="fas fa-user-edit"></i>
                     </a>
@@ -176,19 +181,24 @@
     <!--begin::Modal-->
     <Update v-model:reload="reload" :data="user"></Update>
     <!--end::Modal-->
+
+    <!--begin::Modal-->
+    <ChangePassword v-model:reload="reload" :id="user._id"></ChangePassword>
+    <!--end::Modal-->
   </div>
 </template>
 
 <script>
-import ApiService from "@/core/services/ApiService";
+import { ref } from "vue";
 import _ from "lodash";
+import Swal from "sweetalert2";
+import ApiService from "@/core/services/ApiService";
 import Search from "@/components/tools/Search";
 import Pagination from "@/components/tools/Pagination";
 import Store from "@/components/users/Store";
 import Update from "@/components/users/Update";
-import { ref } from "vue";
+import ChangePassword from "@/components/users/ChangePassword";
 import { ElNotification } from "element-plus";
-import Swal from "sweetalert2";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -198,11 +208,19 @@ export default {
     Pagination,
     Store,
     Update,
+    ChangePassword,
   },
   mounted() {
     this.getListUser();
   },
   watch: {
+    qr(value) {
+      let data = { params: {} };
+      if (value) {
+        data.params.qr = value;
+      }
+      this.getListUser(data);
+    },
     reload() {
       this.getListUser();
     },
@@ -255,16 +273,6 @@ export default {
           });
         });
     },
-    handleSearch(qr) {
-      this.qr = qr;
-      let data = { params: {} };
-      if (this.qr.length > 0) data.params.qr = qr;
-
-      this.getListUser(data);
-    },
-    resetSearch() {
-      this.getListUser();
-    },
     handleCurrentChange(page) {
       let data = { params: {} };
       data.params.page = page;
@@ -272,7 +280,7 @@ export default {
 
       this.getListUser(data);
     },
-    showFormUpdate(data) {
+    showForm(data) {
       this.user = data;
     },
     handleChangeStatusActive(user) {

@@ -25,10 +25,7 @@ import { ref } from "vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Pagination",
-  emit: ["currentChange"],
-  props: {
-    page: Object,
-  },
+  props: ["page"],
   setup(props) {
     const pagination = ref(props.page);
 

@@ -7,12 +7,12 @@
       type="text"
       v-model="qr"
       class="form-control form-control-solid w-400px ps-15"
-      placeholder="Nhập tên, email hoặc số điện thoại"
-      @keyup.enter="searchUser()"
+      :placeholder="placeholder"
+      @keyup.enter="handleSearch()"
     />
     <span
       v-show="qr"
-      @click="reset()"
+      @click="clearSearch()"
       class="btn btn-flush btn-active-color-primary position-absolute top-50 pe-3 end-0 translate-middle-y lh-0"
     >
       <span class="svg-icon svg-icon-2 svg-icon-lg-1 me-0">
@@ -32,23 +32,26 @@ import MenuComponent from "@/components/menu/MenuComponent.vue";
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Search",
+  props: ["placeholder", "search"],
   watch: {
     qr() {
-      if (!this.qr) this.reset();
+      if (!this.qr) this.clearSearch();
     },
   },
-  data() {
+  setup() {
+    const qr = ref("");
+
     return {
-      qr: "",
+      qr,
     };
   },
   methods: {
-    reset() {
+    clearSearch() {
       this.qr = "";
-      this.$emit("resetSearch");
+      this.$emit("update:search", "");
     },
-    searchUser() {
-      this.$emit("search", this.qr);
+    handleSearch() {
+      this.$emit("update:search", this.qr);
     },
   },
 });
