@@ -315,6 +315,18 @@ const DocMenuConfig = [
       },
     ],
   },
+  {
+    heading: "Chat",
+    route: "/chat",
+    pages: [
+      {
+        heading: "Chat",
+        route: "/chat",
+        svgIcon: "media/icons/duotune/communication/com006.svg",
+        fontIcon: "bi-calendar3-event",
+      },
+    ],
+  },
 ];
 
 export default DocMenuConfig;

@@ -14,8 +14,11 @@ import ApiService from "@/core/services/ApiService";
 import { initApexCharts } from "@/core/plugins/apexcharts";
 import { initInlineSvg } from "@/core/plugins/inline-svg";
 import { initVeeValidate } from "@/core/plugins/vee-validate";
-
 import "@/core/plugins/prismjs";
+import socketio from "socket.io";
+import VueSocketIO from "vue-socket.io";
+
+// export const SocketInstance = socketio("http://127.0.0.1:");
 const app = createApp(App);
 
 app.use(store);

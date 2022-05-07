@@ -245,6 +245,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "users",
         component: () => import("@/views/User.vue"),
       },
+      {
+        path: "/chat",
+        name: "chat",
+        component: () => import("@/views/Chat.vue"),
+      },
     ],
   },
   {
